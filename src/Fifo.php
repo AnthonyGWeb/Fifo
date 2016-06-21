@@ -1,55 +1,30 @@
 <?php
 namespace Fifo;
 
+use Fifo\Model\JobCollection;
+use Fifo\Model\JobEntity;
+use Fifo\Storage\InterfaceStorage;
+use Fifo\Storage\Storage;
+
 class Fifo
 {
-    private $config;
+    private $storage;
 
-    private $storages = [];
-
-    private $allStorage = [];
+    private $jobCollection;
 
     public function __construct(array $config)
     {
-        $this->config = $config;
-        $this->setAllStorages();
-        $this->addStorage(array_keys($config));
+        $this->storage = Storage::getInstance($config);
+        $this->jobCollection = new JobCollection();
     }
 
-    public function putJob()
+    public function putJob(JobEntity $jobEntity)
     {
-        // TODO :
+        $this->jobCollection->add($jobEntity);
     }
 
     public function save()
     {
-        
-    }
-
-    /**
-     * Add storage
-     *
-     * @param array $storages
-     * @throws FifoException
-     */
-    protected function addStorage(array $storages): void
-    {
-        foreach ($storages as $storage) {
-            if (!in_array(strtolower($storage), $this->allStorage)) {
-                throw new FifoException("Unable to add storage : $storage");
-            }
-            $this->storages[] = $storage;
-        }
-    }
-
-    /**
-     * Set available storage in function of driver
-     */
-    private function setAllStorages(): void
-    {
-        $storageDrivers = scandir(__DIR__ . "/Storage/Driver/");
-        foreach ($storageDrivers as $storageDriver) {
-            $this->allStorage[] = strtolower(str_replace('.php', '', $storageDriver));
-        }
+        $this->storage->save($this->jobCollection);
     }
 }

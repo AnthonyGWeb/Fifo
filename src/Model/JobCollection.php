@@ -7,16 +7,29 @@ class JobCollection implements \Countable, \IteratorAggregate
     
     public function count()
     {
-        // TODO: Implement count() method.
+        return count($this->storageEntity);
     }
     
     public function getIterator()
     {
         // TODO: Implement getIterator() method.
     }
-    
-    public function add(JobEntity $storageEntity)
+
+    /**
+     * Add a new jobEntity in collection
+     *
+     * @param JobEntity $storageEntity
+     */
+    public function add(JobEntity $storageEntity): void
     {
         $storageEntity[] = $storageEntity;
+    }
+
+    /**
+     * Flush storageEntity
+     */
+    public function flush(): void
+    {
+        $this->storageEntity = [];
     }
 }
