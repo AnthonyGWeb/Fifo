@@ -1,7 +1,7 @@
 <?php
 namespace Fifo\Storage\Driver;
 
-use Fifo\Model\StorageCollection;
+use Fifo\Model\JobCollection;
 
 class MySql implements Storage
 {
@@ -10,7 +10,7 @@ class MySql implements Storage
         // TODO: Implement config
     }
 
-    public function save(StorageCollection $storageCollection)
+    public function save(JobCollection $storageCollection)
     {
         // TODO: Implement save() method.
     }

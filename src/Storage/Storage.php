@@ -1,13 +1,13 @@
 <?php
 namespace Fifo\Storage;
 
-use Fifo\Model\StorageCollection;
+use Fifo\Model\JobCollection;
 
 interface Storage
 {
     public function __construct(array $config);
 
-    public function save(StorageCollection $storageCollection);
+    public function save(JobCollection $storageCollection);
     
     public function get();
 }
