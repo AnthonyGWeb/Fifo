@@ -1,7 +1,7 @@
 <?php
 namespace Fifo\Model;
 
-class StorageCollection implements \Countable, \IteratorAggregate
+class JobCollection implements \Countable, \IteratorAggregate
 {
     private $storageEntity = [];
     
@@ -15,7 +15,7 @@ class StorageCollection implements \Countable, \IteratorAggregate
         // TODO: Implement getIterator() method.
     }
     
-    public function add(StorageEntity $storageEntity)
+    public function add(JobEntity $storageEntity)
     {
         $storageEntity[] = $storageEntity;
     }

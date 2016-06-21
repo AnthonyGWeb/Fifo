@@ -1,7 +1,7 @@
 <?php
 namespace Fifo\Model;
 
-class StorageEntity
+class JobEntity
 {
     const PRIORITY_LOW = 0;    
     const PRIORITY_NORMAL = 1;    
